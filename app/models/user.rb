@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     self.session_token ||= generate_session_token
   end
 
-  def reset_token
+  def reset_token!
     self.session_token = generate_session_token
   end
 

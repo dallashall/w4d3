@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class SessionsControllerTest < ActionController::TestCase
-  test "should get [new" do
-    get :[new
+  test "should get new" do
+    get :new
     assert_response :success
   end
 
@@ -11,8 +11,8 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get destroy]" do
-    get :destroy]
+  test "should get destroy" do
+    get :destroy
     assert_response :success
   end
 
