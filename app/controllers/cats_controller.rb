@@ -1,4 +1,12 @@
 class CatsController < ApplicationController
+
+  before_action :correct_user?, only: [:edit, :update]
+
+  def correct_user?
+    @cat = Cat.find(params[:id])
+    @cat.owner.id == current_user.id ? true : redirect_to(cats_url)
+  end
+
   def index
     @cats = Cat.all
     render :index
@@ -42,7 +50,9 @@ class CatsController < ApplicationController
   private
 
   def cat_params
-    params.require(:cat)
-      .permit(:age, :birth_date, :color, :description, :name, :sex)
+    req_params = params.require(:cat)
+      .permit(:age, :birth_date, :color, :description, :name, :sex, :owner_id)
+    req_params[:user_id] = current_user.id
+    req_params
   end
 end

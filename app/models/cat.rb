@@ -21,7 +21,7 @@ class Cat < ActiveRecord::Base
 
   CAT_COLORS = %w(black white orange brown)
 
-  belongs_to (
+  belongs_to(
     :owner,
     foreign_key: :user_id,
     class_name: :User

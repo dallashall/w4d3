@@ -20,6 +20,7 @@ class User < ActiveRecord::Base
   after_initialize :set_session_token
 
   has_many :cats
+  has_many :cat_rental_requests
 
   def generate_session_token
     SecureRandom.urlsafe_base64(16)
