@@ -1,11 +1,25 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  user_name       :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ActiveRecord::Base
+  attr_reader :password
+
   validates :user_name, :session_token, uniqueness: true, presence: true
   validates :password_digest, presence: true
   validates :password, length: { minimum: 4, message: "4 ain't that hard", allow_nil: true }
 
   after_initialize :set_session_token
 
-  attr_reader :password
+  has_many :cats
 
   def generate_session_token
     SecureRandom.urlsafe_base64(16)
