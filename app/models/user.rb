@@ -19,9 +19,9 @@ class User < ActiveRecord::Base
     self.session_token = generate_session_token
   end
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by_user_name(params[:user_name])
-    return user if user && user.is_password?(password)
+  def self.find_by_credentials(user_params)
+    user = User.find_by_user_name(user_params[:user_name])
+    return user if user && user.is_password?(user_params[:password])
     nil
   end
 

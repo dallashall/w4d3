@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   def new
+    @action = :user
     render :new
   end
 
